@@ -1,0 +1,15 @@
+docker build -t fsl .
+docker network create fsl-net
+docker volume create fsl-data
+docker run --detach --restart=always --volume=fsl-data:/data --net=fsl-net --name=fsl-app fsl
+
+cd caddy
+docker build --network=host -t fsl-caddy .
+docker run --rm -it fsl-caddy caddy hash-password -plaintext 'mypass'
+docker run --detach --restart=always --volume=fsl-data:/data --net=fsl-net --name=fsl-web --env=APP_USERNAME="myuser" --env=APP_PASSWORD_HASH="JDJhJDEwJEFESjduR0ZWdDNQUTVCZ0NZMkxad3VNL0ltN2JBZ090aWVzYmFkNnlBUFhTcFJYSFpKb0ll" --publish=8081:8081 fsl-caddy
+
+
+
+
+
+

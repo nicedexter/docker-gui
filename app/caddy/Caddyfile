@@ -1,0 +1,25 @@
+{
+    order webdav last
+}
+:8081 {
+    log
+    root * /data
+    reverse_proxy fsl-app:8081
+
+    handle /files/* {
+        uri strip_prefix /files
+        file_server browse
+    }
+    redir /files /files/
+
+    handle /webdav/* {
+        uri strip_prefix /webdav
+        webdav
+    }
+    redir /webdav /webdav/
+
+    basicauth /* {
+        {env.APP_USERNAME} {env.APP_PASSWORD_HASH}
+    }
+}
+
