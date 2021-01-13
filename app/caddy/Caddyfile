@@ -1,10 +1,10 @@
 {
     order webdav last
 }
-:8081 {
+:8080 {
     log
     root * /data
-    reverse_proxy fsl-app:8081
+    reverse_proxy gimp-app:8080
 
     handle /files/* {
         uri strip_prefix /files

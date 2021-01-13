@@ -19,13 +19,13 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends fsl && \
+    apt-get install -y --no-install-recommends gimp && \
     rm -rf /var/lib/apt/lists
 
 COPY --from=easy-novnc-build /bin/easy-novnc /usr/local/bin/
 COPY menu.xml /etc/xdg/openbox/
 COPY supervisord.conf /etc/
-EXPOSE 8081
+EXPOSE 8080
 
 RUN groupadd --gid 1000 app && \
     useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app && \
