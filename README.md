@@ -18,6 +18,9 @@ http://127.0.0.1:8080/files/
 ## webdav
 http://127.0.0.1:8080/webdav/
 
+
+![](./app/gimpontheweb.png)
+
 ## Source
 [howto on digitalocean](https://www.digitalocean.com/community/tutorials/how-to-remotely-access-gui-applications-using-docker-and-caddy-on-ubuntu-20-04)
 
