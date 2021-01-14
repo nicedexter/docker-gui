@@ -18,7 +18,7 @@ RUN apt-get update -y && \
 
 COPY --from=caddy-build /bin/caddy /usr/local/bin/
 COPY Caddyfile /etc/
-EXPOSE 4040
+EXPOSE 3030
 
 RUN groupadd --gid 1000 app && \
     useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app && \

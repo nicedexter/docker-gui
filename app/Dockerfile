@@ -6,6 +6,8 @@ RUN go mod init build && \
 
 FROM ubuntu:20.04 
 
+RUN apt-get update -y && apt-get full-upgrade -y
+
 RUN apt-get update -y && \
     DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 
@@ -18,13 +20,14 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends lxterminal nano wget openssh-client rsync ca-certificates xdg-utils htop tar xzip gzip bzip2 zip unzip && \
     rm -rf /var/lib/apt/lists
 
-RUN wget https://github.com/Songtech-0912/Prometheus-Project/releases/download/v1.0-alpha/Blender-v2.90.0-x86_64.AppImage
-RUN chmod +x Blender-v2.90.0-x86_64.AppImage
+RUN apt-get install flatpak 
+RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+RUN flatpak install -y --noninteractive flathub org.jaspstats.JASP
 
 COPY --from=easy-novnc-build /bin/easy-novnc /usr/local/bin/
 COPY menu.xml /etc/xdg/openbox/
 COPY supervisord.conf /etc/
-EXPOSE 4040
+EXPOSE 3030
 
 RUN groupadd --gid 1000 app && \
     useradd --home-dir /data --shell /bin/bash --uid 1000 --gid 1000 app && \

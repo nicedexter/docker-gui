@@ -1,10 +1,10 @@
 {
     order webdav last
 }
-:4040 {
+:3030 {
     log
     root * /data
-    reverse_proxy blender-app:4040
+    reverse_proxy jasp-app:3030
 
     handle /files/* {
         uri strip_prefix /files
