@@ -18,8 +18,8 @@
     }
     redir /webdav /webdav/
 
-    basicauth /* {
-        {env.APP_USERNAME} {env.APP_PASSWORD_HASH}
-    }
+    #basicauth /* {
+    #    {env.APP_USERNAME} {env.APP_PASSWORD_HASH}
+    #}
 }
 
